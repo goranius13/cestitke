@@ -1,9 +1,11 @@
 <template>
     <nav class="navbar mb-4" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                <img src="/images/logo.png" />
-            </a>
+            <router-link to="/" exact>
+                <a class="navbar-item">
+                    <img src="/images/logo.png" />
+                </a>
+            </router-link>
 
             <a
                 role="button"

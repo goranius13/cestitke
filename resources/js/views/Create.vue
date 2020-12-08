@@ -1,172 +1,164 @@
 <template>
-    <div class="columns mb-6">
-        <div class="column">
-            <form class="mb-4" v-on:submit.prevent>
-                <div class="field">
-                    <label class="label is-align-content-flex-start"
-                        >Naslov</label
-                    >
-                    <div class="control">
-                        <input
-                            class="input"
-                            type="text"
-                            v-model="card.headingText"
-                            :placeholder="card.headingTextPlaceholder"
-                        />
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label class="label is-align-content-flex-start"
-                        >Čestitka</label
-                    >
-                    <div class="control">
-                        <textarea
-                            class="textarea"
-                            v-model="card.cardText"
-                            :placeholder="card.cardTextPlaceholder"
-                        ></textarea>
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label class="label is-align-content-flex-start"
-                        >Potpis</label
-                    >
-                    <div class="control">
-                        <input
-                            class="input"
-                            type="text"
-                            v-model="card.signatureText"
-                            :placeholder="card.signatureTextPlaceholder"
-                        />
-                    </div>
-                </div>
-                <div class="form__field columns mb-4">
-                    <div class="column form__label">
-                        <strong>Odaberite boju:</strong>
-                    </div>
-                    <div class="column is-align-content-flex-start form__input">
-                        <v-swatches
-                            v-model="card.color"
-                            :swatches="swatches"
-                            :shapes="shapes"
-                            row-length="5"
-                            popover-x="left"
-                        ></v-swatches>
-                    </div>
-                </div>
-
-                <div class="form__field columns mb-4">
-                    <div class="column">
-                        <button
-                            class="button is-primary"
-                            @click="isImageModalActive = true"
+    <div>
+        <div class="columns my-4 is-flex is-justify-content-center">
+            <div class="column m-4 is-half-desktop">
+                <p class="control my-4">
+                    <select v-model="card.selected" @change="onCategorySelected()">
+                        <option
+                            v-for="(item, index) in card.category_id"
+                            v-bind:key="index"
+                            :value="item.value"
                         >
-                            Odaberite pozadinu
-                        </button>
+                            {{ item.text }}
+                        </option>
+                    </select>
+                    <i class="bar"></i>
+                </p>
+
+                <p class="control my-4">
+                    <input
+                        class="input"
+                        type="text"
+                        v-model="card.header_text"
+                        :placeholder="card.header_textPlaceholder"
+                        required
+                    />
+                    <i class="bar"></i>
+                </p>
+
+                <p class="control my-4">
+                    <textarea
+                        class="textarea"
+                        v-model="card.card_text"
+                        :placeholder="card.card_textPlaceholder"
+                        required
+                    ></textarea>
+                    <i class="bar"></i>
+                </p>
+
+                <p class="control my-4">
+                    <input
+                        class="input"
+                        type="text"
+                        v-model="card.signature_text"
+                        :placeholder="card.signature_textPlaceholder"
+                        required
+                    />
+                    <i class="bar"></i>
+                </p>
+
+                <!--p class="checkbox-control my-4">
+                    <label>
+                        <input type="checkbox" />
+                        <i class="helper"></i>
+                        Dodaj pjesmu?
+                    </label>
+                </p-->
+
+                <p class="has-text-left is-flex is-align-items-center my-4">
+                    <span class="mr-3 is-align-items-center" style="float: left"
+                        >Boja teksta:</span
+                    >
+                    <v-swatches
+                        v-model="card.color"
+                        popover-x="left"
+                        swatches="text-advanced"
+                    ></v-swatches>
+                    <button
+                        class="button cestitke-red ml-6 is-align-items-center"
+                        @click="isImageModalActive = true"
+                    >
+                        Odaberite pozadinu
+                    </button>
+                </p>
+            </div>
+
+            <div class="column m-4 is-narrow-desktop">
+                <div class="gallery my-4" id="gallery">
+                    <div class="gallery-item">
+                        <div class="content py-2" v-bind:style="bg">
+                            <CardDisplay v-bind:cardDetails="cardDetails" />
+                        </div>
                     </div>
-                    <div class="column">
+                </div>
+                <p class="my-4">
+                    <button class="button cestitke-red ml-3" @click="storeCardToDb">
+                        Objavite čestitku
+                    </button>
+                    <!--Ovaj ispod ide za payment gateway-->
+                    <!--button
+                        class="button cestitke-red"
+                        @click="isPaymentModalActive = true"
+                    >
+                        Objavite čestitku
+                    </button-->
+                </p>
+            </div>
+
+            <div :class="['modal', { 'is-active': isImageModalActive }]">
+                <div class="modal-background"></div>
+                <div class="modal-card background-thumbs">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Odaberite pozadinu</p>
                         <button
-                            class="button is-primary"
-                            @click="isPaymentModalActive = true"
+                            class="delete"
+                            aria-label="close"
+                            @click="isImageModalActive = false"
+                        ></button>
+                    </header>
+                    <section class="modal-card-body background-thumbs-body">
+                        <vue-select-image
+                            :dataImages="dataImages"
+                            @onselectimage="onSelectImage"
                         >
-                            Izvršite plaćanje
+                        </vue-select-image>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <button
+                            class="button is-success"
+                            @click="isImageModalActive = !isImageModalActive"
+                        >
+                            Spremi
                         </button>
-                    </div>
+                        <button
+                            class="button"
+                            @click="isImageModalActive = !isImageModalActive"
+                        >
+                            Odustani
+                        </button>
+                    </footer>
                 </div>
+            </div>
 
-                <div class="modal" :class="{ 'is-active': isImageModalActive }">
-                    <div class="modal-background"></div>
-                    <div class="modal-card">
-                        <header class="modal-card-head">
-                            <p class="modal-card-title">Odaberite pozadinu</p>
-                            <button
-                                class="delete"
-                                aria-label="close"
-                                @click="isImageModalActive = false"
-                            ></button>
-                        </header>
-                        <section class="modal-card-body">
-                            <vue-select-image
-                                :dataImages="dataImages"
-                                @onselectimage="onSelectImage"
-                            >
-                            </vue-select-image>
-                        </section>
-                        <footer class="modal-card-foot">
-                            <button
-                                class="button is-success"
-                                @click="
-                                    isImageModalActive = !isImageModalActive
-                                "
-                            >
-                                Spremi
-                            </button>
-                            <button
-                                class="button"
-                                @click="
-                                    isImageModalActive = !isImageModalActive
-                                "
-                            >
-                                Odustani
-                            </button>
-                        </footer>
-                    </div>
-                </div>
-
-                <div
-                    class="modal"
-                    :class="{ 'is-active': isPaymentModalActive }"
-                >
-                    <div class="modal-background"></div>
-                    <div class="modal-card">
-                        <header class="modal-card-head">
-                            <p class="modal-card-title">Plaćanje</p>
-                            <button
-                                class="delete"
-                                aria-label="close"
-                                @click="isPaymentModalActive = false"
-                            ></button>
-                        </header>
-                        <section class="modal-card-body">
-                            <div id="smart-button-container">
-                                <div style="text-align: center;">
-                                    <div id="paypal-button-container"></div>
-                                </div>
+            <div class="modal" :class="{ 'is-active': isPaymentModalActive }">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Plaćanje</p>
+                        <button
+                            class="delete"
+                            aria-label="close"
+                            @click="isPaymentModalActive = false"
+                        ></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <div id="smart-button-container">
+                            <div style="text-align: center;">
+                                <div id="paypal-button-container"></div>
                             </div>
-                        </section>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="column is-full-mobile">
-            <div class="gallery my-4" id="gallery">
-                <div class="gallery-item">
-                    <div class="content py-4" :style="bg">
-                        <CardDisplay
-                            v-bind:color="card.color"
-                            v-bind:headingText="
-                                card.headingText != ''
-                                    ? card.headingText
-                                    : card.headingTextPlaceholder
-                            "
-                            v-bind:cardText="
-                                card.cardText != ''
-                                    ? card.cardText
-                                    : card.cardTextPlaceholder
-                            "
-                            v-bind:signatureText="
-                                card.signatureText != ''
-                                    ? card.signatureText
-                                    : card.signatureTextPlaceholder
-                            "
-                            v-bind:isAudio="false"
-                        />
-                    </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
+        <article v-if="isCardInserted" :class="[{ 'is-success': isSuccess }, { 'is-danger': !isSuccess }, 'message']">
+            <div class="message-body" v-if="isSuccess">
+                Čestitka je uspješno pohranjena. Ubrzo će biti pregledane te ukoliko ne sadrži uvredljiv tekst biti će objavljena.
+            </div>
+            <div class="message-body" v-else>
+                Došlo je do pogreške prilikom objave Vaše čestitke. Molimo Vas pokušajte ponovno za par minuta.
+            </div>
+        </article>
     </div>
 </template>
 
@@ -187,58 +179,43 @@ export default {
     data() {
         return {
             card: {
-                color: "#8b5aff",
-                headingText: "",
-                cardText: "",
-                signatureText: "",
-                headingTextPlaceholder: "Naslov čestitke",
-                cardTextPlaceholder: "Upišite vaš tekst ovdje",
-                signatureTextPlaceholder: "Unesite Vaš potpis"
+                color: "#d12229",
+                header_text: "",
+                card_text: "",
+                signature_text: "",
+                header_textPlaceholder: "Naslov čestitke",
+                card_textPlaceholder: "Upišite vaš tekst ovdje",
+                signature_textPlaceholder: "Unesite Vaš potpis",
+                is_audio: false,
+                selected: null,
+                category_id: [
+                    { value: null, text: "Odaberite kategoriju" },
+                    { value: "1", text: "Vjenčanje" },
+                    { value: "2", text: "Rođendan" },
+                    { value: "3", text: "Blagdan" },
+                    { value: "4", text: "Krštenje" },
+                    { value: "5", text: "Krizma" },
+                    { value: "6", text: "Ostalo" }
+                ]
             },
-            dataImages: [
-                {
-                    id: "1",
-                    src: "/images/thumb/bg_1_thumb.jpg",
-                    alt: "Alt Image 1"
-                },
-                {
-                    id: "2",
-                    src: "/images/thumb/bg_2_thumb.jpg",
-                    alt: "Alt Image 2"
-                },
-                {
-                    id: "3",
-                    src: "/images/thumb/bg_3_thumb.jpg",
-                    alt: "Alt Image 3"
-                },
-                {
-                    id: "4",
-                    src: "/images/thumb/bg_4_thumb.jpg",
-                    alt: "Alt Image 4"
-                },
-                {
-                    id: "5",
-                    src: "/images/thumb/bg_5_thumb.jpg",
-                    alt: "Alt Image 5"
-                },
-                {
-                    id: "6",
-                    src: "/images/thumb/bg_6_thumb.jpg",
-                    alt: "Alt Image 6"
-                }
-            ],
-            swatches: [
-                ["#F64272", "#F6648B", "#F493A7", "#F891A6", "#FFCCD5"],
-                ["#8b5aff", "#a27bff", "#b99cff", "#d0bdff", "#e8deff"],
-                ["#51e5db", "#74ebe3", "#96f0ea", "#b9f5f1", "#dcfaf8"],
-                ["#ffa51a", "#ffb748", "#ffc976", "#ffdba3", "#ffedd1"]
-            ],
-            shapes: "circles",
+            cardDetails: {
+                color: "",
+                header_text: "",
+                card_text: "",
+                signature_text: "",
+                is_audio: false,
+                image_id: 1,
+                payment_id: 0,
+                category_id: null
+            },
+            dataImages: [],
             isImageModalActive: false,
             isPaymentModalActive: false,
+            isCardInserted: false,
+            isSuccess: false,
             bg: {
                 background:
-                    "url('/images/bg_1_up.png') right bottom no-repeat, url('/images/bg_1_down.png') left top no-repeat",
+                    "url('/images/bg_10_down.png') right bottom no-repeat, url('/images/bg_10_up.png') left top no-repeat",
                 backgroundClip: "content-box, content-box",
                 backgroundSize: "contain, contain",
                 borderRadius: "8px"
@@ -246,16 +223,75 @@ export default {
         };
     },
     updated() {
-        Event.$emit("changed-card-data", this.card);
+        this.cardDetails.color = this.card.color;
+        this.cardDetails.category_id = this.card.selected;
+        this.cardDetails.header_text =
+            this.card.header_text != ""
+                ? this.card.header_text
+                : this.card.header_textPlaceholder;
+        this.cardDetails.card_text =
+            this.card.card_text != ""
+                ? this.card.card_text
+                : this.card.card_textPlaceholder;
+        this.cardDetails.signature_text =
+            this.card.signature_text != ""
+                ? this.card.signature_text
+                : this.card.signature_textPlaceholder;
+    },
+    created() {
+        this.cardDetails.color = this.card.color;
+        this.cardDetails.header_text = this.card.header_textPlaceholder;
+        this.cardDetails.card_text = this.card.card_textPlaceholder;
+        this.cardDetails.signature_text = this.card.signature_textPlaceholder;
     },
     methods: {
         onSelectImage: function(data) {
+            this.cardDetails.image_id = data.id;
             this.bg.background =
                 "url('/images/bg_" +
                 data.id +
                 "_down.png') right bottom / contain no-repeat content-box, url('/images/bg_" +
                 data.id +
                 "_up.png') left top / contain no-repeat content-box";
+            this.isImageModalActive = false;
+        },
+        storeCardToDb: function() {
+            axios
+                .post("/api/cards/store", {
+                    data: this.cardDetails,
+                    _method: "put"
+                })
+                .then(
+                    response => {
+                        console.log(response);
+                        this.isCardInserted = true;
+                        this.isSuccess = response.data.success;
+                    },
+                    error => {
+                        console.log(error);
+                    }
+                );
+        },
+        updateThumbnails: function(data) {
+            this.dataImages.length = 0;
+            data.forEach(id =>
+                this.dataImages.push({
+                    id: id,
+                    src: "/images/thumb/bg_" + id + "_thumb.jpg",
+                    alt: "Alt Image " + id
+                })
+            );
+        },
+        onCategorySelected: function() {
+            axios.get("/api/images/" + this.card.selected).then(
+                response => {
+                    console.log(response);
+                    this.updateThumbnails(response.data);
+                },
+                error => {
+                    console.log(error);
+                }
+            );
         }
     }
 };
@@ -265,130 +301,19 @@ export default {
 .label {
     float: left;
 }
+.cestitke-red {
+    background: #d12229;
+    color: #fff;
+}
+.cestitke-red:hover {
+    color: #fff;
+}
 
-.gallery {
-    display: grid;
-    grid-column-gap: 16px;
-    grid-row-gap: 16px;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    /*grid-auto-rows: 8px;*/
+.background-thumbs {
+    max-width: 90% !important;
 }
-.gallery .card {
-    max-width: 100%;
-    border-radius: 8px;
-    /*box-shadow: 4px 4px 8px #bbb;*/
-    box-shadow: 0 4px 2px -1px rgba(0, 0, 0, 0.2),
-        0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 2px 6px 0 rgba(0, 0, 0, 0.12);
-    transition: all 1.5s ease;
-    min-height: 400px;
-}
-.gallery .card:hover {
-    /*box-shadow: 8px 8px 16px #bbb;*/
-    box-shadow: 0 4px 2px -1px rgba(0, 0, 0, 0.2),
-        0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 2px 6px 0 rgba(0, 0, 0, 0.12);
-}
-.gallery .card {
-    padding: 4px;
-}
-.gallery .gallery-item {
-    transition: grid-row-start 300ms linear;
-    transition: transform 300ms ease;
-    transition: all 0.5s ease;
-    cursor: pointer;
-}
-.gallery .gallery-item:hover {
-    transform: scale(1.025);
-}
-@media (max-width: 600px) {
-    .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)) !important;
-    }
-    .vueAudioBetter {
-        width: 200px !important;
-    }
-    .vueAudioBetter .slider {
-        display: none;
-    }
-}
-@media (max-width: 400px) {
-    .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)) !important;
-    }
-}
-@-moz-keyframes zoomin {
-    0% {
-        max-width: 50%;
-        transform: rotate(-30deg);
-        filter: blur(4px);
-    }
-    30% {
-        filter: blur(4px);
-        transform: rotate(-80deg);
-    }
-    70% {
-        max-width: 50%;
-        transform: rotate(45deg);
-    }
-    100% {
-        max-width: 100%;
-        transform: rotate(0deg);
-    }
-}
-@-webkit-keyframes zoomin {
-    0% {
-        max-width: 50%;
-        transform: rotate(-30deg);
-        filter: blur(4px);
-    }
-    30% {
-        filter: blur(4px);
-        transform: rotate(-80deg);
-    }
-    70% {
-        max-width: 50%;
-        transform: rotate(45deg);
-    }
-    100% {
-        max-width: 100%;
-        transform: rotate(0deg);
-    }
-}
-@-o-keyframes zoomin {
-    0% {
-        max-width: 50%;
-        transform: rotate(-30deg);
-        filter: blur(4px);
-    }
-    30% {
-        filter: blur(4px);
-        transform: rotate(-80deg);
-    }
-    70% {
-        max-width: 50%;
-        transform: rotate(45deg);
-    }
-    100% {
-        max-width: 100%;
-        transform: rotate(0deg);
-    }
-}
-@keyframes zoomin {
-    0% {
-        max-width: 50%;
-        transform: rotate(-30deg);
-        filter: blur(4px);
-    }
-    30% {
-        filter: blur(4px);
-        transform: rotate(-80deg);
-    }
-    70% {
-        max-width: 50%;
-        transform: rotate(45deg);
-    }
-    100% {
-        max-width: 100%;
-        transform: rotate(0deg);
-    }
+
+.background-thumbs-body {
+    align-items: unset !important;
 }
 </style>

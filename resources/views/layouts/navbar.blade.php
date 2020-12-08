@@ -1,9 +1,7 @@
 <nav class="navbar mb-4" role="navigation" aria-label="main navigation">
+    <div class="container is-flex is-justify-content-center">
         <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                <img src="/images/logo.png" />
-            </a>
-
+        <router-link to="/" exact class="navbar-item mx-2"><img src="/images/logo.png" /></router-link>
             <a
                 role="button"
                 class="navbar-burger burger"
@@ -27,6 +25,10 @@
                 <router-link to="/rodjendani" class="navbar-item mx-2">Rođendani</router-link>
                 <router-link to="/blagdani" class="navbar-item mx-2">Blagdani</router-link>
                 <router-link to="/kreiraj" class="navbar-item mx-2">Kreiraj čestitku</router-link>
+                <router-link to="/kontakt" class="navbar-item mx-2">Kontakt</router-link>
+                <router-link to="/uvjeti" class="navbar-item mx-2">Uvjeti</router-link>
+
             </div>
         </div>
-    </nav>
+    </div>
+</nav>

@@ -10,8 +10,8 @@
                         <input
                             class="input"
                             type="text"
-                            v-model="card.headingText"
-                            :placeholder="card.headingTextPlaceholder"
+                            v-model="cardDetails.headingText"
+                            :placeholder="cardDetails.headingTextPlaceholder"
                         />
                     </div>
                 </div>
@@ -23,8 +23,8 @@
                     <div class="control">
                         <textarea
                             class="textarea"
-                            v-model="card.cardText"
-                            :placeholder="card.cardTextPlaceholder"
+                            v-model="cardDetails.cardText"
+                            :placeholder="cardDetails.cardTextPlaceholder"
                         ></textarea>
                     </div>
                 </div>
@@ -37,8 +37,8 @@
                         <input
                             class="input"
                             type="text"
-                            v-model="card.signatureText"
-                            :placeholder="card.signatureTextPlaceholder"
+                            v-model="cardDetails.signatureText"
+                            :placeholder="cardDetails.signatureTextPlaceholder"
                         />
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="column is-align-content-flex-start form__input">
                         <v-swatches
-                            v-model="card.color"
+                            v-model="cardDetails.color"
                             :swatches="swatches"
                             :shapes="shapes"
                             row-length="5"
@@ -144,25 +144,7 @@
             <div class="gallery my-4" id="gallery">
                 <div class="gallery-item">
                     <div class="content py-4" :style="bg">
-                        <CardDisplay
-                            v-bind:color="card.color"
-                            v-bind:headingText="
-                                card.headingText != ''
-                                    ? card.headingText
-                                    : card.headingTextPlaceholder
-                            "
-                            v-bind:cardText="
-                                card.cardText != ''
-                                    ? card.cardText
-                                    : card.cardTextPlaceholder
-                            "
-                            v-bind:signatureText="
-                                card.signatureText != ''
-                                    ? card.signatureText
-                                    : card.signatureTextPlaceholder
-                            "
-                            v-bind:isAudio="false"
-                        />
+                        <CardDisplay v-bind:cardDetails="cardDetails" />
                     </div>
                 </div>
             </div>
@@ -186,14 +168,15 @@ export default {
     },
     data() {
         return {
-            card: {
+            cardDetails: {
                 color: "#8b5aff",
                 headingText: "",
-                cardText: "",
+                cardText: "aaa",
                 signatureText: "",
                 headingTextPlaceholder: "Naslov čestitke",
                 cardTextPlaceholder: "Upišite vaš tekst ovdje",
-                signatureTextPlaceholder: "Unesite Vaš potpis"
+                signatureTextPlaceholder: "Unesite Vaš potpis",
+                isAudio: true
             },
             dataImages: [
                 {
@@ -225,15 +208,33 @@ export default {
                     id: "6",
                     src: "/images/thumb/bg_6_thumb.jpg",
                     alt: "Alt Image 6"
+                },
+                {
+                    id: "7",
+                    src: "/images/thumb/bg_7_thumb.jpg",
+                    alt: "Alt Image 7"
+                },
+                {
+                    id: "8",
+                    src: "/images/thumb/bg_8_thumb.jpg",
+                    alt: "Alt Image 8"
+                },
+                {
+                    id: "9",
+                    src: "/images/thumb/bg_9_thumb.jpg",
+                    alt: "Alt Image 9"
+                },
+                {
+                    id: "10",
+                    src: "/images/thumb/bg_10_thumb.jpg",
+                    alt: "Alt Image 10"
+                },
+                {
+                    id: "11",
+                    src: "/images/thumb/bg_11_thumb.jpg",
+                    alt: "Alt Image 11"
                 }
             ],
-            swatches: [
-                ["#F64272", "#F6648B", "#F493A7", "#F891A6", "#FFCCD5"],
-                ["#8b5aff", "#a27bff", "#b99cff", "#d0bdff", "#e8deff"],
-                ["#51e5db", "#74ebe3", "#96f0ea", "#b9f5f1", "#dcfaf8"],
-                ["#ffa51a", "#ffb748", "#ffc976", "#ffdba3", "#ffedd1"]
-            ],
-            shapes: "circles",
             isImageModalActive: false,
             isPaymentModalActive: false,
             bg: {
@@ -246,7 +247,22 @@ export default {
         };
     },
     updated() {
-        Event.$emit("changed-card-data", this.card);
+        Event.$emit("changed-card-data", this.cardDetails);
+        this.cardDetails.headingText =
+            this.cardDetails.headingText != ""
+                ? this.cardDetails.headingText
+                : this.cardDetails.headingTextPlaceholder;
+        this.cardDetails.cardText =
+            this.cardDetails.cardText != ""
+                ? this.cardDetails.cardText.replace(
+                      /(?:\\r\\n|\\r|\\n)/g,
+                      "<br />"
+                  )
+                : this.cardDetails.cardTextPlaceholder;
+        this.cardDetails.signatureText =
+            this.cardDetails.signatureText != ""
+                ? this.cardDetails.signatureText
+                : this.cardDetails.signatureTextPlaceholder;
     },
     methods: {
         onSelectImage: function(data) {
