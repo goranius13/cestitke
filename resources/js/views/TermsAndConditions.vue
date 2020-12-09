@@ -1,5 +1,5 @@
 <template>
-  <div class="content is-medium my-4" style="text-align: left;">
+  <div class="content is-medium my-4 mx-6" style="text-align: left;">
       <h1 class="my-4">Uvjeti korištenja</h1>
         <p>Cestitke.online je internet stranica. Korištenjem Internet stranice cestitke.online smatra se da ste u potpunosti upoznati i suglasni s ovdje navedenim Uvjetima korištenja.  Ukoliko se s istima ne slažete i ne prihvaćate ih, molimo vas da se ne  koristite ovom internetskom stranicom.</p>
         <p>Cestitke.online ne mogu biti odgovorne za bilo kakav gubitak podataka ili kakav drugi događaj  do kojeg može doći za vrijeme pružanja usluga od strane Cestitke.online.<br>

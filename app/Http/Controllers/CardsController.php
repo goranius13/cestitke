@@ -32,7 +32,7 @@ class CardsController extends Controller
     {
         return Card::where([['is_active', '=', 1], ['category_id', '=', 1]])
             ->orderBy('id', 'desc')
-            ->take(20)
+            ->take(100)
             ->get();
     }
 
@@ -50,6 +50,32 @@ class CardsController extends Controller
     }
 
     /**
+     * Display a listing of the baptisms.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function baptism()
+    {
+        return Card::where([['is_active', '=', 1], ['category_id', '=', 4]])
+            ->orderBy('id', 'desc')
+            ->take(100)
+            ->get();
+    }
+
+    /**
+     * Display a listing of the chrisms.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function chrism()
+    {
+        return Card::where([['is_active', '=', 1], ['category_id', '=', 5]])
+            ->orderBy('id', 'desc')
+            ->take(100)
+            ->get();
+    }
+
+    /**
      * Display a listing of the holidays.
      *
      * @return \Illuminate\Http\Response
@@ -57,6 +83,19 @@ class CardsController extends Controller
     public function holidays()
     {
         return Card::where([['is_active', '=', 1], ['category_id', '=', 3]])
+            ->orderBy('id', 'desc')
+            ->take(20)
+            ->get();
+    }
+
+    /**
+     * Display a listing of the miscellaneous cards.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function miscellaneous()
+    {
+        return Card::where([['is_active', '=', 1], ['category_id', '=', 6]])
             ->orderBy('id', 'desc')
             ->take(20)
             ->get();

@@ -21,7 +21,10 @@ Route::get('/api/cards', 'App\Http\Controllers\CardsController@index');
 Route::get('/api/cards/{id}', 'App\Http\Controllers\CardsController@show');
 Route::get('/api/weddings', 'App\Http\Controllers\CardsController@weddings');
 Route::get('/api/birthdays', 'App\Http\Controllers\CardsController@birthdays');
+Route::get('/api/baptism', 'App\Http\Controllers\CardsController@baptism');
+Route::get('/api/chrism', 'App\Http\Controllers\CardsController@chrism');
 Route::get('/api/holidays', 'App\Http\Controllers\CardsController@holidays');
+Route::get('/api/miscellaneous', 'App\Http\Controllers\CardsController@miscellaneous');
 Route::put('/api/cards/store', 'App\Http\Controllers\CardsController@store');
 Route::get('/api/cards/activate/{id}', 'App\Http\Controllers\CardsController@update');
 

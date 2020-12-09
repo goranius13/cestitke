@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="columns my-4 is-flex is-justify-content-center">
+        <div class="columns my-4">
             <div class="column m-4 is-half-desktop">
                 <p class="control my-4">
                     <select v-model="card.selected" @change="onCategorySelected()">
@@ -150,15 +150,29 @@
                     </section>
                 </div>
             </div>
+
+
+            <div :class="['modal', { 'is-active': isCardInserted }]">
+                <div class="modal-background"></div>
+                <div class="modal-card background-thumbs">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Objava čestitke</p>
+                        <button
+                            class="delete"
+                            aria-label="close"
+                            @click="isCardInserted = false"
+                        ></button>
+                    </header>
+                    <section class="modal-card-body background-thumbs-body" v-if="isSuccess">
+                        Čestitka je uspješno pohranjena. Ubrzo će biti pregledane te ukoliko ne sadrži uvredljiv tekst biti će objavljena.
+                    </section>
+                    <section class="modal-card-body background-thumbs-body" v-else>
+                        Došlo je do pogreške prilikom objave Vaše čestitke. Molimo Vas pokušajte ponovno za par minuta.
+                    </section>
+                </div>
+            </div>
+
         </div>
-        <article v-if="isCardInserted" :class="[{ 'is-success': isSuccess }, { 'is-danger': !isSuccess }, 'message']">
-            <div class="message-body" v-if="isSuccess">
-                Čestitka je uspješno pohranjena. Ubrzo će biti pregledane te ukoliko ne sadrži uvredljiv tekst biti će objavljena.
-            </div>
-            <div class="message-body" v-else>
-                Došlo je do pogreške prilikom objave Vaše čestitke. Molimo Vas pokušajte ponovno za par minuta.
-            </div>
-        </article>
     </div>
 </template>
 
@@ -256,21 +270,23 @@ export default {
             this.isImageModalActive = false;
         },
         storeCardToDb: function() {
-            axios
-                .post("/api/cards/store", {
-                    data: this.cardDetails,
-                    _method: "put"
-                })
-                .then(
-                    response => {
-                        console.log(response);
-                        this.isCardInserted = true;
-                        this.isSuccess = response.data.success;
-                    },
-                    error => {
-                        console.log(error);
-                    }
-                );
+            if(!this.isCardInserted) {
+                axios
+                    .post("/api/cards/store", {
+                        data: this.cardDetails,
+                        _method: "put"
+                    })
+                    .then(
+                        response => {
+                            console.log(response);
+                            this.isCardInserted = true;
+                            this.isSuccess = response.data.success;
+                        },
+                        error => {
+                            console.log(error);
+                        }
+                    );
+            }
         },
         updateThumbnails: function(data) {
             this.dataImages.length = 0;

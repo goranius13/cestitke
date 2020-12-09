@@ -36,6 +36,30 @@
         >
             <i :class="email.icon"></i>
         </ShareNetwork>
+        <ShareNetwork
+            :network="viber.network"
+            :key="viber.network"
+            :style="{ backgroundColor: viber.color }"
+            :url="sharingUrl"
+            :title="cardDetails.header_text"
+            :description="cardDetails.card_text"
+            :quote="cardDetails.signature_text"
+            hashtags="cestitkeonline"
+        >
+            <i :class="viber.icon"></i>
+        </ShareNetwork>
+        <ShareNetwork
+            :network="whatsapp.network"
+            :key="whatsapp.network"
+            :style="{ backgroundColor: whatsapp.color }"
+            :url="sharingUrl"
+            :title="whatsapp.header_text"
+            :description="whatsapp.card_text"
+            :quote="whatsapp.signature_text"
+            hashtags="cestitkeonline"
+        >
+            <i :class="whatsapp.icon"></i>
+        </ShareNetwork>
     </footer>
 </template>
 
@@ -62,7 +86,7 @@ export default {
             return ('Čestitka - ' + this.cardDetails.header_text);
         },
         sharingUrl: function() {
-            return ('https://cestitke.online/' + this.cardDetails.id);
+            return ('https://cestitke.online/#/cestitka/' + this.cardDetails.id);
         }
     },
     data() {

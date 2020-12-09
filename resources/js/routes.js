@@ -17,8 +17,23 @@ let routes = [
     },
     
     {
+        path: '/krstenja',
+        component: require('./views/Baptism.vue').default
+    },
+    
+    {
+        path: '/krizme',
+        component: require('./views/Chrism.vue').default
+    },
+    
+    {
         path: '/blagdani',
         component: require('./views/Holidays.vue').default
+    },
+    
+    {
+        path: '/ostalo',
+        component: require('./views/Miscellaneous.vue').default
     },
     
     {
@@ -42,6 +57,11 @@ let routes = [
         props: true
     },
 ];
+
+/*
+                <router-link to="/krstenja" class="navbar-item">Krštenja</router-link>
+                <router-link to="/krizme" class="navbar-item">Krizme</router-link>
+*/
 
 export default new VueRouter({
     routes,

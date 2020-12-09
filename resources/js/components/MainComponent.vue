@@ -219,12 +219,12 @@ export default {
     },
     computed: {
         row1Display: function() {
-            return window.innerWidth < 1416
+            return window.innerWidth < 1100
                 ? this.cards.slice(0, 3)
                 : this.cards.slice(0, 4);
         },
         row2Display: function() {
-            return window.innerWidth < 1416
+            return window.innerWidth < 1100
                 ? this.cards.slice(3, 6)
                 : this.cards.slice(4, 8);
         }
