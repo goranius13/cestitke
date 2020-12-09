@@ -29,6 +29,7 @@
         "sass-loader": "^8.0.2",
         "vue": "^2.6.11",
         "vue-audio-better": "^3.0.1",
+        "vue-clipboard2": "^0.3.1",
         "vue-flux": "^6.3.0",
         "vue-router": "^3.4.9",
         "vue-select-image": "^1.9.0",

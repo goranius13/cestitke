@@ -28,12 +28,12 @@
         <div class="tile is-ancestor mx-2 mt-2">
             <div class="tile is-6 p-2">
                 <figure class="image">
-                    <img v-bind:src="card4" />
+                    <img v-bind:src="card1" />
                 </figure>
             </div>
             <div class="tile is-6 p-2">
                 <figure class="image">
-                    <img v-bind:src="card6" />
+                    <img v-bind:src="card2" />
                 </figure>
             </div>
         </div>
@@ -65,17 +65,17 @@
         <div class="tile is-ancestor mx-2 mt-2">
             <div class="tile is-4 p-2">
                 <figure class="image">
-                    <img v-bind:src="card1" />
+                    <img v-bind:src="card3" />
+                </figure>
+            </div>
+            <div class="tile is-4 p-2">
+                <figure class="image">
+                    <img v-bind:src="card4" />
                 </figure>
             </div>
             <div class="tile is-4 p-2">
                 <figure class="image">
                     <img v-bind:src="card5" />
-                </figure>
-            </div>
-            <div class="tile is-4 p-2">
-                <figure class="image">
-                    <img v-bind:src="card3" />
                 </figure>
             </div>
         </div>
@@ -208,12 +208,11 @@ export default {
             isFloaterActive: false,
             //isBottomImageVisible koristi se za malu sliku dole desno kod skrola
             //isBottomImageVisible: false,
-            card1: "/images/1.png",
-            card2: "/images/2.png",
-            card3: "/images/3.png",
-            card4: "/images/4.png",
-            card5: "/images/5.png",
-            card6: "/images/6.png",
+            card1: "/images/1.jpg",
+            card2: "/images/2.jpg",
+            card3: "/images/3.jpg",
+            card4: "/images/4.jpg",
+            card5: "/images/5.jpg",
             eronet: "/images/eronet-logo.png"
         };
     },

@@ -1,5 +1,5 @@
 <template>
-    <footer class="modal-card-foot is-justify-content-center">
+    <footer class="modal-card-foot is-justify-content-center" style="flex-flow: row wrap;">
         <ShareNetwork
             :network="facebook.network"
             :key="facebook.network"
@@ -25,18 +25,6 @@
             <i :class="twitter.icon"></i>
         </ShareNetwork>
         <ShareNetwork
-            :network="email.network"
-            :key="email.network"
-            :style="{ backgroundColor: email.color }"
-            :url="sharingUrl"
-            :title="emailTitleText"
-            :description="emailDescriptionText"
-            :quote="cardDetails.signature_text"
-            hashtags="cestitkeonline"
-        >
-            <i :class="email.icon"></i>
-        </ShareNetwork>
-        <ShareNetwork
             :network="viber.network"
             :key="viber.network"
             :style="{ backgroundColor: viber.color }"
@@ -53,14 +41,39 @@
             :key="whatsapp.network"
             :style="{ backgroundColor: whatsapp.color }"
             :url="sharingUrl"
-            :title="whatsapp.header_text"
-            :description="whatsapp.card_text"
-            :quote="whatsapp.signature_text"
+            :title="cardDetails.header_text"
+            :description="cardDetails.card_text"
+            :quote="cardDetails.signature_text"
             hashtags="cestitkeonline"
         >
             <i :class="whatsapp.icon"></i>
         </ShareNetwork>
+        <ShareNetwork
+            :network="email.network"
+            :key="email.network"
+            :style="{ backgroundColor: email.color }"
+            :url="sharingUrl"
+            :title="emailTitleText"
+            :description="emailDescriptionText"
+            :quote="cardDetails.signature_text"
+            hashtags="cestitkeonline"
+        >
+            <i :class="email.icon"></i>
+        </ShareNetwork>
+        <p class="share-copy" 
+            v-clipboard:copy="sharingUrl"
+            v-clipboard:success="handleCopyStatus"
+        >
+            <i class="far fa-copy share-copy-icon"></i>
+        </p>
+        <div class="break"></div>
+        <article class="message is-small">
+            <div class="message-body" v-if="copySucceeded">
+                Poveznica do čestitke je kopirana.
+            </div>
+        </article>
     </footer>
+    
 </template>
 
 <script>
@@ -132,9 +145,15 @@ export default {
                     name: "Email",
                     icon: "far fah fa-lg fa-envelope",
                     color: "#333333"
-                }
+                },
+            copySucceeded: false
         };
+    },
+    methods: {
+        handleCopyStatus: function(e) {
+            this.copySucceeded = true;
     }
+  }
 };
 </script>
 
@@ -169,5 +188,30 @@ a[class^="share-network-"] span {
     padding: 0 10px;
     flex: 1 1 0%;
     font-weight: 500;
+}
+
+.share-copy {
+    flex: none;
+    color: #ffffff;
+    background-color: #333;
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 10px 10px 0;
+}
+
+.share-copy-icon {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    flex: 0 1 auto;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
 }
 </style>

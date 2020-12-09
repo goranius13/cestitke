@@ -52,6 +52,11 @@ let routes = [
     },
     
     {
+        path: '/onama',
+        component: require('./views/About.vue').default
+    },
+    
+    {
         path: '/cestitka/:card_id',
         component: require('./views/SingleCard.vue').default,
         props: true

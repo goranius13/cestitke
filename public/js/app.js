@@ -2209,12 +2209,11 @@ __webpack_require__.r(__webpack_exports__);
       isFloaterActive: false,
       //isBottomImageVisible koristi se za malu sliku dole desno kod skrola
       //isBottomImageVisible: false,
-      card1: "/images/1.png",
-      card2: "/images/2.png",
-      card3: "/images/3.png",
-      card4: "/images/4.png",
-      card5: "/images/5.png",
-      card6: "/images/6.png",
+      card1: "/images/1.jpg",
+      card2: "/images/2.jpg",
+      card3: "/images/3.jpg",
+      card4: "/images/4.jpg",
+      card5: "/images/5.jpg",
       eronet: "/images/eronet-logo.png"
     };
   },
@@ -2276,6 +2275,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2405,10 +2417,41 @@ __webpack_require__.r(__webpack_exports__);
         name: "Email",
         icon: "far fah fa-lg fa-envelope",
         color: "#333333"
-      }
+      },
+      copySucceeded: false
     };
+  },
+  methods: {
+    handleCopyStatus: function handleCopyStatus(e) {
+      this.copySucceeded = true;
+    }
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/About.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/About.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -3297,6 +3340,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/clipboard/dist/clipboard.min.js":
+/*!******************************************************!*\
+  !*** ./node_modules/clipboard/dist/clipboard.min.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * clipboard.js v2.0.6
+ * https://clipboardjs.com/
+ * 
+ * Licensed MIT © Zeno Rocha
+ */
+!function(t,e){ true?module.exports=e():undefined}(this,function(){return o={},r.m=n=[function(t,e){t.exports=function(t){var e;if("SELECT"===t.nodeName)t.focus(),e=t.value;else if("INPUT"===t.nodeName||"TEXTAREA"===t.nodeName){var n=t.hasAttribute("readonly");n||t.setAttribute("readonly",""),t.select(),t.setSelectionRange(0,t.value.length),n||t.removeAttribute("readonly"),e=t.value}else{t.hasAttribute("contenteditable")&&t.focus();var o=window.getSelection(),r=document.createRange();r.selectNodeContents(t),o.removeAllRanges(),o.addRange(r),e=o.toString()}return e}},function(t,e){function n(){}n.prototype={on:function(t,e,n){var o=this.e||(this.e={});return(o[t]||(o[t]=[])).push({fn:e,ctx:n}),this},once:function(t,e,n){var o=this;function r(){o.off(t,r),e.apply(n,arguments)}return r._=e,this.on(t,r,n)},emit:function(t){for(var e=[].slice.call(arguments,1),n=((this.e||(this.e={}))[t]||[]).slice(),o=0,r=n.length;o<r;o++)n[o].fn.apply(n[o].ctx,e);return this},off:function(t,e){var n=this.e||(this.e={}),o=n[t],r=[];if(o&&e)for(var i=0,a=o.length;i<a;i++)o[i].fn!==e&&o[i].fn._!==e&&r.push(o[i]);return r.length?n[t]=r:delete n[t],this}},t.exports=n,t.exports.TinyEmitter=n},function(t,e,n){var d=n(3),h=n(4);t.exports=function(t,e,n){if(!t&&!e&&!n)throw new Error("Missing required arguments");if(!d.string(e))throw new TypeError("Second argument must be a String");if(!d.fn(n))throw new TypeError("Third argument must be a Function");if(d.node(t))return s=e,f=n,(u=t).addEventListener(s,f),{destroy:function(){u.removeEventListener(s,f)}};if(d.nodeList(t))return a=t,c=e,l=n,Array.prototype.forEach.call(a,function(t){t.addEventListener(c,l)}),{destroy:function(){Array.prototype.forEach.call(a,function(t){t.removeEventListener(c,l)})}};if(d.string(t))return o=t,r=e,i=n,h(document.body,o,r,i);throw new TypeError("First argument must be a String, HTMLElement, HTMLCollection, or NodeList");var o,r,i,a,c,l,u,s,f}},function(t,n){n.node=function(t){return void 0!==t&&t instanceof HTMLElement&&1===t.nodeType},n.nodeList=function(t){var e=Object.prototype.toString.call(t);return void 0!==t&&("[object NodeList]"===e||"[object HTMLCollection]"===e)&&"length"in t&&(0===t.length||n.node(t[0]))},n.string=function(t){return"string"==typeof t||t instanceof String},n.fn=function(t){return"[object Function]"===Object.prototype.toString.call(t)}},function(t,e,n){var a=n(5);function i(t,e,n,o,r){var i=function(e,n,t,o){return function(t){t.delegateTarget=a(t.target,n),t.delegateTarget&&o.call(e,t)}}.apply(this,arguments);return t.addEventListener(n,i,r),{destroy:function(){t.removeEventListener(n,i,r)}}}t.exports=function(t,e,n,o,r){return"function"==typeof t.addEventListener?i.apply(null,arguments):"function"==typeof n?i.bind(null,document).apply(null,arguments):("string"==typeof t&&(t=document.querySelectorAll(t)),Array.prototype.map.call(t,function(t){return i(t,e,n,o,r)}))}},function(t,e){if("undefined"!=typeof Element&&!Element.prototype.matches){var n=Element.prototype;n.matches=n.matchesSelector||n.mozMatchesSelector||n.msMatchesSelector||n.oMatchesSelector||n.webkitMatchesSelector}t.exports=function(t,e){for(;t&&9!==t.nodeType;){if("function"==typeof t.matches&&t.matches(e))return t;t=t.parentNode}}},function(t,e,n){"use strict";n.r(e);var o=n(0),r=n.n(o),i="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};function a(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}function c(t){!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,c),this.resolveOptions(t),this.initSelection()}var l=(function(t,e,n){return e&&a(t.prototype,e),n&&a(t,n),t}(c,[{key:"resolveOptions",value:function(t){var e=0<arguments.length&&void 0!==t?t:{};this.action=e.action,this.container=e.container,this.emitter=e.emitter,this.target=e.target,this.text=e.text,this.trigger=e.trigger,this.selectedText=""}},{key:"initSelection",value:function(){this.text?this.selectFake():this.target&&this.selectTarget()}},{key:"selectFake",value:function(){var t=this,e="rtl"==document.documentElement.getAttribute("dir");this.removeFake(),this.fakeHandlerCallback=function(){return t.removeFake()},this.fakeHandler=this.container.addEventListener("click",this.fakeHandlerCallback)||!0,this.fakeElem=document.createElement("textarea"),this.fakeElem.style.fontSize="12pt",this.fakeElem.style.border="0",this.fakeElem.style.padding="0",this.fakeElem.style.margin="0",this.fakeElem.style.position="absolute",this.fakeElem.style[e?"right":"left"]="-9999px";var n=window.pageYOffset||document.documentElement.scrollTop;this.fakeElem.style.top=n+"px",this.fakeElem.setAttribute("readonly",""),this.fakeElem.value=this.text,this.container.appendChild(this.fakeElem),this.selectedText=r()(this.fakeElem),this.copyText()}},{key:"removeFake",value:function(){this.fakeHandler&&(this.container.removeEventListener("click",this.fakeHandlerCallback),this.fakeHandler=null,this.fakeHandlerCallback=null),this.fakeElem&&(this.container.removeChild(this.fakeElem),this.fakeElem=null)}},{key:"selectTarget",value:function(){this.selectedText=r()(this.target),this.copyText()}},{key:"copyText",value:function(){var e=void 0;try{e=document.execCommand(this.action)}catch(t){e=!1}this.handleResult(e)}},{key:"handleResult",value:function(t){this.emitter.emit(t?"success":"error",{action:this.action,text:this.selectedText,trigger:this.trigger,clearSelection:this.clearSelection.bind(this)})}},{key:"clearSelection",value:function(){this.trigger&&this.trigger.focus(),document.activeElement.blur(),window.getSelection().removeAllRanges()}},{key:"destroy",value:function(){this.removeFake()}},{key:"action",set:function(t){var e=0<arguments.length&&void 0!==t?t:"copy";if(this._action=e,"copy"!==this._action&&"cut"!==this._action)throw new Error('Invalid "action" value, use either "copy" or "cut"')},get:function(){return this._action}},{key:"target",set:function(t){if(void 0!==t){if(!t||"object"!==(void 0===t?"undefined":i(t))||1!==t.nodeType)throw new Error('Invalid "target" value, use a valid Element');if("copy"===this.action&&t.hasAttribute("disabled"))throw new Error('Invalid "target" attribute. Please use "readonly" instead of "disabled" attribute');if("cut"===this.action&&(t.hasAttribute("readonly")||t.hasAttribute("disabled")))throw new Error('Invalid "target" attribute. You can\'t cut text from elements with "readonly" or "disabled" attributes');this._target=t}},get:function(){return this._target}}]),c),u=n(1),s=n.n(u),f=n(2),d=n.n(f),h="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},p=function(t,e,n){return e&&y(t.prototype,e),n&&y(t,n),t};function y(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}var m=(function(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}(v,s.a),p(v,[{key:"resolveOptions",value:function(t){var e=0<arguments.length&&void 0!==t?t:{};this.action="function"==typeof e.action?e.action:this.defaultAction,this.target="function"==typeof e.target?e.target:this.defaultTarget,this.text="function"==typeof e.text?e.text:this.defaultText,this.container="object"===h(e.container)?e.container:document.body}},{key:"listenClick",value:function(t){var e=this;this.listener=d()(t,"click",function(t){return e.onClick(t)})}},{key:"onClick",value:function(t){var e=t.delegateTarget||t.currentTarget;this.clipboardAction&&(this.clipboardAction=null),this.clipboardAction=new l({action:this.action(e),target:this.target(e),text:this.text(e),container:this.container,trigger:e,emitter:this})}},{key:"defaultAction",value:function(t){return b("action",t)}},{key:"defaultTarget",value:function(t){var e=b("target",t);if(e)return document.querySelector(e)}},{key:"defaultText",value:function(t){return b("text",t)}},{key:"destroy",value:function(){this.listener.destroy(),this.clipboardAction&&(this.clipboardAction.destroy(),this.clipboardAction=null)}}],[{key:"isSupported",value:function(t){var e=0<arguments.length&&void 0!==t?t:["copy","cut"],n="string"==typeof e?[e]:e,o=!!document.queryCommandSupported;return n.forEach(function(t){o=o&&!!document.queryCommandSupported(t)}),o}}]),v);function v(t,e){!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,v);var n=function(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}(this,(v.__proto__||Object.getPrototypeOf(v)).call(this));return n.resolveOptions(e),n.listenClick(t),n}function b(t,e){var n="data-clipboard-"+t;if(e.hasAttribute(n))return e.getAttribute(n)}e.default=m}],r.c=o,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},r.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,"a",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p="",r(r.s=6).default;function r(t){if(o[t])return o[t].exports;var e=o[t]={i:t,l:!1,exports:{}};return n[t].call(e.exports,e,e.exports,r),e.l=!0,e.exports}var n,o});
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-select-image/dist/vue-select-image.css":
 /*!*************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-select-image/dist/vue-select-image.css ***!
@@ -3404,7 +3464,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.share-network-list {\r\n    display: flex;\r\n    flex-direction: row;\r\n    flex-wrap: wrap;\r\n    justify-content: center;\r\n    max-width: 1000px;\r\n    margin: auto;\n}\na[class^=\"share-network-\"] {\r\n    flex: none;\r\n    color: #ffffff;\r\n    background-color: #333;\r\n    border-radius: 3px;\r\n    overflow: hidden;\r\n    display: flex;\r\n    flex-direction: row;\r\n    align-content: center;\r\n    align-items: center;\r\n    cursor: pointer;\r\n    margin: 0 10px 10px 0;\n}\na[class^=\"share-network-\"] .fah {\r\n    background-color: rgba(0, 0, 0, 0.2);\r\n    padding: 10px;\r\n    flex: 0 1 auto;\n}\na[class^=\"share-network-\"] span {\r\n    padding: 0 10px;\r\n    flex: 1 1 0%;\r\n    font-weight: 500;\n}\r\n", ""]);
+exports.push([module.i, "\n.share-network-list {\r\n    display: flex;\r\n    flex-direction: row;\r\n    flex-wrap: wrap;\r\n    justify-content: center;\r\n    max-width: 1000px;\r\n    margin: auto;\n}\na[class^=\"share-network-\"] {\r\n    flex: none;\r\n    color: #ffffff;\r\n    background-color: #333;\r\n    border-radius: 3px;\r\n    overflow: hidden;\r\n    display: flex;\r\n    flex-direction: row;\r\n    align-content: center;\r\n    align-items: center;\r\n    cursor: pointer;\r\n    margin: 0 10px 10px 0;\n}\na[class^=\"share-network-\"] .fah {\r\n    background-color: rgba(0, 0, 0, 0.2);\r\n    padding: 10px;\r\n    flex: 0 1 auto;\n}\na[class^=\"share-network-\"] span {\r\n    padding: 0 10px;\r\n    flex: 1 1 0%;\r\n    font-weight: 500;\n}\n.share-copy {\r\n    flex: none;\r\n    color: #ffffff;\r\n    background-color: #333;\r\n    border-radius: 3px;\r\n    overflow: hidden;\r\n    display: flex;\r\n    flex-direction: row;\r\n    align-content: center;\r\n    align-items: center;\r\n    cursor: pointer;\r\n    margin: 0 10px 10px 0;\n}\n.share-copy-icon {\r\n    background-color: rgba(0, 0, 0, 0.2);\r\n    padding: 10px;\r\n    flex: 0 1 auto;\n}\n.break {\r\n  flex-basis: 100%;\r\n  height: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -4730,6 +4790,100 @@ var r=Object.getOwnPropertySymbols,i=Object.prototype.hasOwnProperty,a=Object.pr
 
 /***/ }),
 
+/***/ "./node_modules/vue-clipboard2/vue-clipboard.js":
+/*!******************************************************!*\
+  !*** ./node_modules/vue-clipboard2/vue-clipboard.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Clipboard = __webpack_require__(/*! clipboard/dist/clipboard.min.js */ "./node_modules/clipboard/dist/clipboard.min.js") // FIXME: workaround for browserify
+
+var VueClipboardConfig = {
+  autoSetContainer: false,
+  appendToBody: true // This fixes IE, see #50
+}
+
+var VueClipboard = {
+  install: function (Vue) {
+    Vue.prototype.$clipboardConfig = VueClipboardConfig
+    Vue.prototype.$copyText = function (text, container) {
+      return new Promise(function (resolve, reject) {
+        var fakeElement = document.createElement('button')
+        var clipboard = new Clipboard(fakeElement, {
+          text: function () { return text },
+          action: function () { return 'copy' },
+          container: typeof container === 'object' ? container : document.body
+        })
+        clipboard.on('success', function (e) {
+          clipboard.destroy()
+          resolve(e)
+        })
+        clipboard.on('error', function (e) {
+          clipboard.destroy()
+          reject(e)
+        })
+        if (VueClipboardConfig.appendToBody) document.body.appendChild(fakeElement)
+        fakeElement.click()
+        if (VueClipboardConfig.appendToBody) document.body.removeChild(fakeElement)
+      })
+    }
+
+    Vue.directive('clipboard', {
+      bind: function (el, binding, vnode) {
+        if (binding.arg === 'success') {
+          el._vClipboard_success = binding.value
+        } else if (binding.arg === 'error') {
+          el._vClipboard_error = binding.value
+        } else {
+          var clipboard = new Clipboard(el, {
+            text: function () { return binding.value },
+            action: function () { return binding.arg === 'cut' ? 'cut' : 'copy' },
+            container: VueClipboardConfig.autoSetContainer ? el : undefined
+          })
+          clipboard.on('success', function (e) {
+            var callback = el._vClipboard_success
+            callback && callback(e)
+          })
+          clipboard.on('error', function (e) {
+            var callback = el._vClipboard_error
+            callback && callback(e)
+          })
+          el._vClipboard = clipboard
+        }
+      },
+      update: function (el, binding) {
+        if (binding.arg === 'success') {
+          el._vClipboard_success = binding.value
+        } else if (binding.arg === 'error') {
+          el._vClipboard_error = binding.value
+        } else {
+          el._vClipboard.text = function () { return binding.value }
+          el._vClipboard.action = function () { return binding.arg === 'cut' ? 'cut' : 'copy' }
+        }
+      },
+      unbind: function (el, binding) {
+        if (binding.arg === 'success') {
+          delete el._vClipboard_success
+        } else if (binding.arg === 'error') {
+          delete el._vClipboard_error
+        } else {
+          el._vClipboard.destroy()
+          delete el._vClipboard
+        }
+      }
+    })
+  },
+  config: VueClipboardConfig
+}
+
+if (true) {
+  module.exports = VueClipboard
+} else {}
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Audio.vue?vue&type=template&id=44e38d0a&":
 /*!********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Audio.vue?vue&type=template&id=44e38d0a& ***!
@@ -4898,13 +5052,13 @@ var render = function() {
     _c("div", { staticClass: "tile is-ancestor mx-2 mt-2" }, [
       _c("div", { staticClass: "tile is-6 p-2" }, [
         _c("figure", { staticClass: "image" }, [
-          _c("img", { attrs: { src: _vm.card4 } })
+          _c("img", { attrs: { src: _vm.card1 } })
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "tile is-6 p-2" }, [
         _c("figure", { staticClass: "image" }, [
-          _c("img", { attrs: { src: _vm.card6 } })
+          _c("img", { attrs: { src: _vm.card2 } })
         ])
       ])
     ]),
@@ -4953,19 +5107,19 @@ var render = function() {
     _c("div", { staticClass: "tile is-ancestor mx-2 mt-2" }, [
       _c("div", { staticClass: "tile is-4 p-2" }, [
         _c("figure", { staticClass: "image" }, [
-          _c("img", { attrs: { src: _vm.card1 } })
+          _c("img", { attrs: { src: _vm.card3 } })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "tile is-4 p-2" }, [
+        _c("figure", { staticClass: "image" }, [
+          _c("img", { attrs: { src: _vm.card4 } })
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "tile is-4 p-2" }, [
         _c("figure", { staticClass: "image" }, [
           _c("img", { attrs: { src: _vm.card5 } })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "tile is-4 p-2" }, [
-        _c("figure", { staticClass: "image" }, [
-          _c("img", { attrs: { src: _vm.card3 } })
         ])
       ])
     ]),
@@ -5168,7 +5322,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "footer",
-    { staticClass: "modal-card-foot is-justify-content-center" },
+    {
+      staticClass: "modal-card-foot is-justify-content-center",
+      staticStyle: { "flex-flow": "row wrap" }
+    },
     [
       _c(
         "ShareNetwork",
@@ -5207,23 +5364,6 @@ var render = function() {
       _c(
         "ShareNetwork",
         {
-          key: _vm.email.network,
-          style: { backgroundColor: _vm.email.color },
-          attrs: {
-            network: _vm.email.network,
-            url: _vm.sharingUrl,
-            title: _vm.emailTitleText,
-            description: _vm.emailDescriptionText,
-            quote: _vm.cardDetails.signature_text,
-            hashtags: "cestitkeonline"
-          }
-        },
-        [_c("i", { class: _vm.email.icon })]
-      ),
-      _vm._v(" "),
-      _c(
-        "ShareNetwork",
-        {
           key: _vm.viber.network,
           style: { backgroundColor: _vm.viber.color },
           attrs: {
@@ -5246,19 +5386,142 @@ var render = function() {
           attrs: {
             network: _vm.whatsapp.network,
             url: _vm.sharingUrl,
-            title: _vm.whatsapp.header_text,
-            description: _vm.whatsapp.card_text,
-            quote: _vm.whatsapp.signature_text,
+            title: _vm.cardDetails.header_text,
+            description: _vm.cardDetails.card_text,
+            quote: _vm.cardDetails.signature_text,
             hashtags: "cestitkeonline"
           }
         },
         [_c("i", { class: _vm.whatsapp.icon })]
-      )
+      ),
+      _vm._v(" "),
+      _c(
+        "ShareNetwork",
+        {
+          key: _vm.email.network,
+          style: { backgroundColor: _vm.email.color },
+          attrs: {
+            network: _vm.email.network,
+            url: _vm.sharingUrl,
+            title: _vm.emailTitleText,
+            description: _vm.emailDescriptionText,
+            quote: _vm.cardDetails.signature_text,
+            hashtags: "cestitkeonline"
+          }
+        },
+        [_c("i", { class: _vm.email.icon })]
+      ),
+      _vm._v(" "),
+      _c(
+        "p",
+        {
+          directives: [
+            {
+              name: "clipboard",
+              rawName: "v-clipboard:copy",
+              value: _vm.sharingUrl,
+              expression: "sharingUrl",
+              arg: "copy"
+            },
+            {
+              name: "clipboard",
+              rawName: "v-clipboard:success",
+              value: _vm.handleCopyStatus,
+              expression: "handleCopyStatus",
+              arg: "success"
+            }
+          ],
+          staticClass: "share-copy"
+        },
+        [_c("i", { staticClass: "far fa-copy share-copy-icon" })]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "break" }),
+      _vm._v(" "),
+      _c("article", { staticClass: "message is-small" }, [
+        _vm.copySucceeded
+          ? _c("div", { staticClass: "message-body" }, [
+              _vm._v(
+                "\n            Poveznica do čestitke je kopirana.\n        "
+              )
+            ])
+          : _vm._e()
+      ])
     ],
     1
   )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/About.vue?vue&type=template&id=2995bb7e&":
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/About.vue?vue&type=template&id=2995bb7e& ***!
+  \***************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "content is-medium my-4 mx-6",
+        staticStyle: { "text-align": "left" }
+      },
+      [
+        _c("h1", { staticClass: "my-4" }, [_vm._v("O nama")]),
+        _vm._v(" "),
+        _c("p", [_vm._v("Dobrodošli na Čestitke Online.")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Dragi čitatelji želimo Vam dobrodošlicu na web portal Čestitke Online."
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Želite nekomu uputiti čestitku za rođendan? Poželjeti sreću mladencima povodom njihovog vjenčanja? Čestitati roditeljima rođenje ili krštenje njihovog djeteta?"
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Od sada to, ali i još više, možete učiniti na našem portalu!")
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Nudimo Vam mnoštvo različitih čestitki i mogućnost kreiranja istih."
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "Nadamo se kako će Vam naše čestitke biti zanimljive i zabavne."
+          )
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -6211,75 +6474,75 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            "Cestitke.online je internet stranica. Korištenjem Internet stranice cestitke.online smatra se da ste u potpunosti upoznati i suglasni s ovdje navedenim Uvjetima korištenja.  Ukoliko se s istima ne slažete i ne prihvaćate ih, molimo vas da se ne  koristite ovom internetskom stranicom."
+            "Cestitke.online je internet stranica. Korištenjem Internet stranice cestitke.online smatra se da ste u potpunosti upoznati i suglasni s ovdje navedenim Uvjetima korištenja.  Ukoliko se s istima ne slažete i ne prihvaćate ih, molimo Vas da se ne  koristite ovom internetskom stranicom."
           )
         ]),
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            "Cestitke.online ne mogu biti odgovorne za bilo kakav gubitak podataka ili kakav drugi događaj  do kojeg može doći za vrijeme pružanja usluga od strane Cestitke.online."
+            "Cestitke.online ne mogu biti odgovorne za bilo kakav gubitak podataka ili kakav drugi događaj  do kojeg može doći za vrijeme pružanja usluga od strane cestitke.online."
           ),
           _c("br")
         ]),
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            "Korisnik  je suglasan s time da pristup Internet stranici cestitke.online ponekad može biti  u prekidu, privremeno nedostupan ili isključen."
+            "Korisnik  je suglasan s time da pristup internet stranici cestitke.online ponekad može biti  u prekidu, privremeno nedostupan ili isključen."
           )
         ]),
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            "Cestitke.online zadržavaju pravo u bilo kojem trenutku izmijeniti ili ukinuti bilo koji segment  poslovanja, uključujući, i bez ograničenja, vrijeme dostupnosti, sadržaj, kao i  opremu potrebnu za pristup ili korištenje ovih Internet stranica. Isto tako,  Cestitke.online mogu prestati slati informacije ili dio informacija, mogu  promijeniti ili ukinuti bilo koji način prijenosa podataka, te mogu promijeniti  brzine prijenosa podataka, kao i bilo koje njihove druge karakteristike."
+            "Cestitke.online zadržavaju pravo u bilo kojem trenutku izmijeniti ili ukinuti bilo koji segment  poslovanja, uključujući i bez ograničenja vrijeme dostupnosti, sadržaj, kao i  opremu potrebnu za pristup ili korištenje ovih internet stranica. Isto tako, cestitke.online mogu prestati slati informacije ili dio informacija, mogu promijeniti ili ukinuti bilo koji način prijenosa podataka, te mogu promijeniti brzine prijenosa podataka, kao i bilo koje njihove druge karakteristike."
           )
         ]),
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            "Cestitke.online zadržavaju pravo u svakom trenutku, i bez prethodne obavijesti, ukoliko to  smatra potrebnim, ukinuti ili izmijeniti bilo koji od ovdje navedenih Uvjeta  korištenja ove Internet stranice."
+            "Cestitke.online zadržavaju pravo u svakom trenutku i bez prethodne obavijesti, ukoliko to  smatra potrebnim, ukinuti ili izmijeniti bilo koji od ovdje navedenih Uvjeta korištenja ove internet stranice."
           ),
           _c("br"),
           _vm._v(
-            "\n        Obveza  i dužnost korisnika je da koristi internetsku stranicu cestitke.online isključivo  u skladu s propisima Bosne i Hercegovine, kao i s općim moralnim i etičkim  načelima."
+            "\n        Obveza i dužnost korisnika je da koristi internetsku stranicu cestitke.online isključivo u skladu s propisima Bosne i Hercegovine, kao i s općim moralnim i etičkim  načelima."
           ),
           _c("br")
         ]),
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            "Cestitke.online isključuju svaku odgovornost za bilo kakva oštećenja opreme i drugih stvari  krajnjeg korisnika koja eventualno mogu nastati kao posljedica korištenja internetskih  stranica Cestitke.online."
+            "Cestitke.online isključuju svaku odgovornost za bilo kakva oštećenja opreme i drugih stvari krajnjeg korisnika koja eventualno mogu nastati kao posljedica korištenja internetske stranice cestitke.online."
           ),
           _c("br"),
           _vm._v(
-            "\n        Korisnik  je suglasan da je korištenje internetskih stranica Cestitke.online isključivo na  njegovu vlastitu odgovornost."
+            "\n        Korisnik je suglasan da je korištenje internetske stranica cestitke.online isključivo na  njegovu vlastitu odgovornost."
           )
         ]),
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            "Cestitke.online nisu ni u kojem slučaju odgovorne za bilo kakvu štetu koja može nastati kao  posljedica korištenja, ili zbog nemogućnosti korištenja internetskih stranica  Cestitke.online djelomično ili u cijelosti."
+            "Cestitke.online nisu ni u kojem slučaju odgovorne za bilo kakvu štetu koja može nastati kao posljedica korištenja ili zbog nemogućnosti korištenja internetske stranice cestitke.online djelomično ili u cijelosti."
           ),
           _c("br"),
           _vm._v(
-            "\n        Cestitke.online  mogu u svako doba raskinuti poslovni odnos s bilo kojim svojim korisnikom te mu  ukinuti lozinke/zaporke ili korisničke račune. U tom slučaju ne prestaju  vrijediti uvjeti koji se odnose na odgovornost i obveze korisnika."
+            "\n        Cestitke.online  mogu u svako doba raskinuti poslovni odnos s bilo kojim svojim korisnikom te mu  ukinuti lozinke/zaporke ili korisničke račune. U tom slučaju ne prestaju  vrijediti Uvjeti koji se odnose na odgovornost i obveze korisnika."
           )
         ]),
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            " Cestitke.online ne jamče za točnost, potpunost ili korisnost bilo kojeg sadržaja na svojim Internet  stranicama. Cestitke.online nisu odgovorne za bilo kakav eventualni gubitak ili  štetu nastalu iz razloga što se korisnik oslonio na informacije dobivene na  internetskim stranicama Cestitke.online."
+            " Cestitke.online ne jamče za točnost, potpunost ili korisnost bilo kojeg sadržaja na svojim Internet stranicama. Cestitke.online nisu odgovorne za bilo kakav eventualni gubitak ili  štetu nastalu iz razloga što se korisnik oslonio na informacije dobivene na  internetskoj stranici Cestitke.online."
           )
         ]),
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            " Cestitke.online se izričito ograđuju u svakom smislu od sadržaja materijala na Internet stranicama  trećih strana, a na koje se može ili se moglo pristupiti sa Internetske  stranice Cestitke.online.Korisnik pristupanjem Internet stranicama trećih strana,  isti to čini isključivo i samo na vlastitu odgovornost."
+            " Cestitke.online se izričito ograđuju u svakom smislu od sadržaja materijala na Internet stranicama trećih strana, a na koje se može ili se moglo pristupiti sa Internetske  stranice cestitke.online. Korisnik pristupanjem internet stranicama trećih strana čini isključivo i samo na vlastitu odgovornost."
           )
         ]),
         _vm._v(" "),
         _c("p", [
           _vm._v(
-            "Korištenjem internetske stranice Cestitke.online smatra se da je korisnik ove Uvjete  korištenja u cijelosti pročitao."
+            "Korištenjem internetske stranice cestitke.online smatra se da je korisnik ove Uvjete korištenja u cijelosti pročitao."
           )
         ])
       ]
@@ -21669,6 +21932,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_audio_better__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_audio_better__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var vue_social_sharing__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-social-sharing */ "./node_modules/vue-social-sharing/dist/vue-social-sharing.js");
 /* harmony import */ var vue_social_sharing__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_social_sharing__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vue_clipboard2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-clipboard2 */ "./node_modules/vue-clipboard2/vue-clipboard.js");
+/* harmony import */ var vue_clipboard2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_clipboard2__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -21683,6 +21949,7 @@ window.Vue.prototype.nl2br = function (body) {
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_audio_better__WEBPACK_IMPORTED_MODULE_3___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_social_sharing__WEBPACK_IMPORTED_MODULE_4___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_clipboard2__WEBPACK_IMPORTED_MODULE_5___default.a);
 window.axios = axios__WEBPACK_IMPORTED_MODULE_1___default.a;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -22078,6 +22345,9 @@ var routes = [{
   path: '/uvjeti',
   component: __webpack_require__(/*! ./views/TermsAndConditions.vue */ "./resources/js/views/TermsAndConditions.vue")["default"]
 }, {
+  path: '/onama',
+  component: __webpack_require__(/*! ./views/About.vue */ "./resources/js/views/About.vue")["default"]
+}, {
   path: '/cestitka/:card_id',
   component: __webpack_require__(/*! ./views/SingleCard.vue */ "./resources/js/views/SingleCard.vue")["default"],
   props: true
@@ -22091,6 +22361,75 @@ var routes = [{
   routes: routes,
   linkActiveClass: 'is-active'
 }));
+
+/***/ }),
+
+/***/ "./resources/js/views/About.vue":
+/*!**************************************!*\
+  !*** ./resources/js/views/About.vue ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _About_vue_vue_type_template_id_2995bb7e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./About.vue?vue&type=template&id=2995bb7e& */ "./resources/js/views/About.vue?vue&type=template&id=2995bb7e&");
+/* harmony import */ var _About_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./About.vue?vue&type=script&lang=js& */ "./resources/js/views/About.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _About_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _About_vue_vue_type_template_id_2995bb7e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _About_vue_vue_type_template_id_2995bb7e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/About.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/About.vue?vue&type=script&lang=js&":
+/*!***************************************************************!*\
+  !*** ./resources/js/views/About.vue?vue&type=script&lang=js& ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_About_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./About.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/About.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_About_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/About.vue?vue&type=template&id=2995bb7e&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/views/About.vue?vue&type=template&id=2995bb7e& ***!
+  \*********************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_About_vue_vue_type_template_id_2995bb7e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./About.vue?vue&type=template&id=2995bb7e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/About.vue?vue&type=template&id=2995bb7e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_About_vue_vue_type_template_id_2995bb7e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_About_vue_vue_type_template_id_2995bb7e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

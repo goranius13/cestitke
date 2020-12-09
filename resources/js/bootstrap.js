@@ -3,6 +3,7 @@ import axios from 'axios';
 import VueRouter from 'vue-router';
 import VueAudio from 'vue-audio-better';
 import VueSocialSharing from 'vue-social-sharing'
+import VueClipboard from 'vue-clipboard2'
  
 window.Vue = Vue;
 
@@ -13,6 +14,7 @@ window.Vue.prototype.nl2br = function (body) {
 Vue.use(VueRouter);
 Vue.use(VueAudio);
 Vue.use(VueSocialSharing);
+Vue.use(VueClipboard);
 
 window.axios = axios;
 
