@@ -475,3 +475,37 @@
   padding: 10px;
 }
 
+.label {
+  float: left;
+}
+
+.cestitke-red {
+  background: #d12229;
+  color: #ffffff;
+}
+
+.cestitke-red:hover {
+  color: #ffffff;
+}
+
+.background-thumbs-body {
+  align-items: unset !important;
+}
+
+.create-card-modal {
+  width: 500px !important;
+  max-width: 90% !important;
+}
+
+.create-card-modal-head {
+  background-color: #d12229 !important;
+}
+
+.create-card-modal-title {
+  color: #ffffff !important;
+}
+
+.create-card-modal-body {
+  min-height: 200px !important;
+}
+

@@ -28,7 +28,7 @@ class Contact extends Mailable
      */
     public function build()
     {
-        return $this->replyTo($this->data['name'])
+        return $this->replyTo($this->data['email'])
             ->subject('Kontakt ')
             ->markdown('emails.contactmail')
             ->with('data',$this->data);;

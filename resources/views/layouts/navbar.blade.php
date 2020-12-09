@@ -5,9 +5,10 @@
             <a
                 role="button"
                 class="navbar-burger burger"
+                id="cestitke-navbar-burger"
                 aria-label="menu"
                 aria-expanded="false"
-                data-target="navbar"
+                data-target="cestitke-navbar"
             >
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -16,7 +17,7 @@
         </div>
 
         <div
-            id="navbar"
+            id="cestitke-navbar"
             class="navbar-menu"
         >
             <div class="navbar-start" >

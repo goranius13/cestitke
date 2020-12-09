@@ -50,15 +50,32 @@
                     Pošalji
                 </button>
             </p>
-            
-            <article class="message" v-if="isMailSent" :class="[{ 'is-success': isMailSentSuccess }, { 'is-danger': !isMailSentSuccess }]">
-                <div class="message-body" v-if="isMailSentSuccess">
-                    Vaša poruka je uspješno poslana.
+
+            <div :class="['modal', { 'is-active': isMailSent }]">
+                <div class="modal-background"></div>
+                <div class="modal-card create-card-modal">
+                    <header class="modal-card-head create-card-modal-head">
+                        <p class="modal-card-title create-card-modal-title">Slanje poruke</p>
+                        <button
+                            class="delete"
+                            aria-label="close"
+                            @click="isMailSent = false; isSendingMailDone = false;"
+                            v-if="isSendingMailDone"
+                        ></button>
+                    </header>                    
+                    <section class="modal-card-body create-card-modal-body" v-if="!isSendingMailDone">
+                        Vaša poruka se šalje. Molimo pričekajte dok traje obrada zahtjeva.
+                    </section>
+                    <section class="modal-card-body create-card-modal-body" v-if="isSendingMailDone">
+                        <p v-if="isMailSentSuccess">
+                            Vaša poruka je uspješno poslana.
+                        </p>
+                        <p v-if="!isMailSentSuccess">
+                            Došlo je do pogreške prilikom slanja poruke. Molimo Vas pokušajte ponovno za par minuta.
+                        </p>
+                    </section>
                 </div>
-                <div class="message-body" v-else>
-                    Došlo je do pogreške prilikom slanja poruke. Molimo Vas pokušajte ponovno za par minuta.
-                </div>
-            </article>
+            </div>
 
         </div>
     </div>
@@ -77,6 +94,7 @@ export default {
             },
             errors: [],
             isMailSent: false,
+            isSendingMailDone: false,
             isMailSentSuccess: false
         };
     },
@@ -94,6 +112,7 @@ export default {
             }
 
             if (!this.errors.length) {
+                this.isMailSent = true;
                 axios
                 .post("/api/contact", {
                     data: this.message,
@@ -102,12 +121,13 @@ export default {
                 .then(
                     response => {
                         console.log(response);
-                        this.isMailSent = true;
+                        this.isSendingMailDone = true;
                         this.isMailSentSuccess = response.data.success;
                     },
                     error => {
                         console.log(error);
-                        this.isMailSent = true;
+                        this.isSendingMailDone = true;
+                        this.isMailSentSuccess = false;
                     }
                 );
             }

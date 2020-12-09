@@ -97,9 +97,9 @@
 
             <div :class="['modal', { 'is-active': isImageModalActive }]">
                 <div class="modal-background"></div>
-                <div class="modal-card background-thumbs">
-                    <header class="modal-card-head">
-                        <p class="modal-card-title">Odaberite pozadinu</p>
+                <div class="modal-card create-card-modal">
+                    <header class="modal-card-head create-card-modal-head">
+                        <p class="modal-card-title create-card-modal-title">Odaberite pozadinu</p>
                         <button
                             class="delete"
                             aria-label="close"
@@ -115,7 +115,7 @@
                     </section>
                     <footer class="modal-card-foot">
                         <button
-                            class="button is-success"
+                            class="button cestitke-red"
                             @click="isImageModalActive = !isImageModalActive"
                         >
                             Spremi
@@ -151,23 +151,28 @@
                 </div>
             </div>
 
-
             <div :class="['modal', { 'is-active': isCardInserted }]">
                 <div class="modal-background"></div>
-                <div class="modal-card background-thumbs">
-                    <header class="modal-card-head">
-                        <p class="modal-card-title">Objava čestitke</p>
+                <div class="modal-card create-card-modal">
+                    <header class="modal-card-head create-card-modal-head">
+                        <p class="modal-card-title create-card-modal-title">Objava čestitke</p>
                         <button
                             class="delete"
                             aria-label="close"
-                            @click="isCardInserted = false"
+                            @click="isCardInserted = false; isInserteDone = false;"
+                            v-if="isInserteDone"
                         ></button>
-                    </header>
-                    <section class="modal-card-body background-thumbs-body" v-if="isSuccess">
-                        Čestitka je uspješno pohranjena. Ubrzo će biti pregledane te ukoliko ne sadrži uvredljiv tekst biti će objavljena.
+                    </header>                    
+                    <section class="modal-card-body create-card-modal-body" v-if="!isInserteDone">
+                        Pričekajte trenutak dok pokušavamo pohraniti Vašu čestitku.
                     </section>
-                    <section class="modal-card-body background-thumbs-body" v-else>
-                        Došlo je do pogreške prilikom objave Vaše čestitke. Molimo Vas pokušajte ponovno za par minuta.
+                    <section class="modal-card-body create-card-modal-body" v-if="isInserteDone">
+                        <p v-if="isSuccess">
+                            Čestitka je uspješno pohranjena. Ubrzo će biti pregledane te ukoliko ne sadrži uvredljiv tekst biti će objavljena.
+                        </p>
+                        <p v-if="!isSuccess">
+                            Došlo je do pogreške prilikom objave Vaše čestitke. Molimo Vas pokušajte ponovno za par minuta.
+                        </p>
                     </section>
                 </div>
             </div>
@@ -226,6 +231,7 @@ export default {
             isImageModalActive: false,
             isPaymentModalActive: false,
             isCardInserted: false,
+            isInserteDone: false,
             isSuccess: false,
             bg: {
                 background:
@@ -271,6 +277,7 @@ export default {
         },
         storeCardToDb: function() {
             if(!this.isCardInserted) {
+                this.isCardInserted = true;
                 axios
                     .post("/api/cards/store", {
                         data: this.cardDetails,
@@ -279,11 +286,13 @@ export default {
                     .then(
                         response => {
                             console.log(response);
-                            this.isCardInserted = true;
+                            this.isInserteDone = true;
                             this.isSuccess = response.data.success;
                         },
                         error => {
                             console.log(error);
+                            this.isInserteDone = true;
+                            this.isSuccess = false;
                         }
                     );
             }
@@ -312,24 +321,3 @@ export default {
     }
 };
 </script>
-
-<style>
-.label {
-    float: left;
-}
-.cestitke-red {
-    background: #d12229;
-    color: #fff;
-}
-.cestitke-red:hover {
-    color: #fff;
-}
-
-.background-thumbs {
-    max-width: 90% !important;
-}
-
-.background-thumbs-body {
-    align-items: unset !important;
-}
-</style>

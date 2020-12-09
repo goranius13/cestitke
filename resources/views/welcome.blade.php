@@ -26,8 +26,7 @@
                 if ($navbarBurgers.length > 0) {
                     $navbarBurgers.forEach( el => {
                         el.addEventListener('click', () => {
-                            const target = el.dataset.target;
-                            const $target = document.getElementById(target);
+                            const $target = document.getElementById('cestitke-navbar');
                             el.classList.toggle('is-active');
                             $target.classList.toggle('is-active');
                         });
@@ -38,10 +37,8 @@
                 if ($navbarItems.length > 0) {
                     $navbarItems.forEach( el => {
                         el.addEventListener('click', () => {
-                            const target = el.dataset.target;
-                            const $target = document.getElementById(target);
-                            el.classList.toggle('is-active');
-                            $target.classList.toggle('is-active');
+                            document.getElementById('cestitke-navbar').classList.toggle('is-active');
+                            document.getElementById('cestitke-navbar-burger').classList.toggle('is-active');
                         });
                     });
                 }
