@@ -285,12 +285,10 @@ export default {
                     })
                     .then(
                         response => {
-                            console.log(response);
                             this.isInserteDone = true;
                             this.isSuccess = response.data.success;
                         },
                         error => {
-                            console.log(error);
                             this.isInserteDone = true;
                             this.isSuccess = false;
                         }
@@ -310,11 +308,9 @@ export default {
         onCategorySelected: function() {
             axios.get("/api/images/" + this.card.selected).then(
                 response => {
-                    console.log(response);
                     this.updateThumbnails(response.data);
                 },
                 error => {
-                    console.log(error);
                 }
             );
         }

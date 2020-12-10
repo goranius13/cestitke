@@ -2219,10 +2219,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     row1Display: function row1Display() {
-      return window.innerWidth < 1100 ? this.cards.slice(0, 3) : this.cards.slice(0, 4);
+      return window.innerWidth < 1217 ? this.cards.slice(0, 3) : this.cards.slice(0, 4);
     },
     row2Display: function row2Display() {
-      return window.innerWidth < 1100 ? this.cards.slice(3, 6) : this.cards.slice(4, 8);
+      return window.innerWidth < 1217 ? this.cards.slice(3, 6) : this.cards.slice(4, 8);
     }
   },
   methods: {
@@ -2696,11 +2696,9 @@ __webpack_require__.r(__webpack_exports__);
           data: this.message,
           _method: "put"
         }).then(function (response) {
-          console.log(response);
           _this.isSendingMailDone = true;
           _this.isMailSentSuccess = response.data.success;
         }, function (error) {
-          console.log(error);
           _this.isSendingMailDone = true;
           _this.isMailSentSuccess = false;
         });
@@ -3017,11 +3015,9 @@ __webpack_require__(/*! vue-select-image/dist/vue-select-image.css */ "./node_mo
           data: this.cardDetails,
           _method: "put"
         }).then(function (response) {
-          console.log(response);
           _this.isInserteDone = true;
           _this.isSuccess = response.data.success;
         }, function (error) {
-          console.log(error);
           _this.isInserteDone = true;
           _this.isSuccess = false;
         });
@@ -3043,12 +3039,8 @@ __webpack_require__(/*! vue-select-image/dist/vue-select-image.css */ "./node_mo
       var _this3 = this;
 
       axios.get("/api/images/" + this.card.selected).then(function (response) {
-        console.log(response);
-
         _this3.updateThumbnails(response.data);
-      }, function (error) {
-        console.log(error);
-      });
+      }, function (error) {});
     }
   }
 });

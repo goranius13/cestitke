@@ -120,12 +120,10 @@ export default {
                 })
                 .then(
                     response => {
-                        console.log(response);
                         this.isSendingMailDone = true;
                         this.isMailSentSuccess = response.data.success;
                     },
                     error => {
-                        console.log(error);
                         this.isSendingMailDone = true;
                         this.isMailSentSuccess = false;
                     }
